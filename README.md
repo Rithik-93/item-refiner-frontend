@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+# Duplicate Item Refiner Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, modern React application with a beautiful dark theme for analyzing duplicate items in Zoho Books.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Sleek Dark Theme**: Rich, sophisticated dark color scheme with purple, blue, and cyan accents
+- **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+- **Responsive Design**: Optimized for all device sizes
+- **Smooth Animations**: Subtle animations and transitions for enhanced UX
+- **Professional Look**: Clean, modern interface with excellent visual hierarchy
 
-## Expanding the ESLint configuration
+## 🎨 Design Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Gradient Backgrounds**: Beautiful gradient backgrounds from slate to purple
+- **Glassmorphism Effects**: Subtle backdrop blur and transparency effects
+- **Floating Elements**: Animated floating orbs for visual interest
+- **Icon Integration**: Lucide React icons throughout the interface
+- **Custom Scrollbars**: Styled scrollbars that match the dark theme
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **React 19** - Latest React with modern features
+- **TypeScript** - Type-safe development
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible component library
+- **Vite** - Fast build tool and dev server
+- **Lucide React** - Beautiful, customizable icons
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The app will be available at `http://localhost:5173`
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview Build
+
+```bash
+npm run preview
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Vercel will automatically detect the Vite configuration
+4. Deploy with the default settings
+
+### Manual Deployment
+
+1. Run `npm run build`
+2. Upload the `dist` folder to your hosting provider
+
+## 🎯 Color Scheme
+
+The application uses a sophisticated dark theme with:
+
+- **Primary**: Purple (#8b5cf6) with blue (#3b82f6) and cyan (#06b6d4) accents
+- **Background**: Deep slate (#0a0a0a) with purple undertones
+- **Cards**: Semi-transparent white with backdrop blur effects
+- **Text**: High contrast white and light gray for readability
+- **Accents**: Purple, blue, and cyan for interactive elements
+
+## 📱 Responsive Design
+
+- **Mobile First**: Optimized for mobile devices
+- **Breakpoints**: Responsive design for tablet and desktop
+- **Touch Friendly**: Large touch targets and intuitive gestures
+- **Accessibility**: High contrast and readable typography
+
+## 🔧 Configuration
+
+### Tailwind CSS
+
+The project uses Tailwind CSS v3 with custom color variables and animations. Configuration is in `tailwind.config.js`.
+
+### PostCSS
+
+PostCSS is configured with Tailwind CSS and Autoprefixer for optimal CSS output.
+
+### Vite
+
+Vite is configured for fast development and optimized production builds.
+
+## 📄 License
+
+This project is part of the Item Refinement system by Anish Kulkarni.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📞 Support
+
+For support or questions, please contact the development team.
