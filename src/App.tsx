@@ -66,7 +66,7 @@ function App() {
     <div className="app">
       <div className="container">
         <header>
-          <h1>🔍 Zoho Books Duplicate Item Detector</h1>
+          <h1>🔍 Anish Kulkarni Duplicate Item Refiner</h1>
           <p>Enter your Zoho Books organization ID to find and analyze duplicate items</p>
         </header>
 
