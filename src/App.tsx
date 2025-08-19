@@ -80,20 +80,16 @@ function App() {
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="mb-8">
-              <img src="/Numerize.png" alt="Numerize Logo" className="w-28 h-auto mx-auto" />
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-full mb-8 shadow-2xl animate-pulse">
+              <Sparkles className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent mb-6 leading-tight">
-              Duplicate Item Refiner
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent mb-1 leading-tight">
+              Numerize Duplicate Item Refiner
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
               Enter your Zoho Books organization ID to find and analyze duplicate items with AI-powered precision
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
-              <Badge variant="secondary" className="bg-purple-500/20 text-purple-200 border-purple-500/30 px-4 py-2 text-sm">
-                <Zap className="w-4 h-4 mr-2" />
-                Powered by Numerize
-              </Badge>
               <Badge variant="secondary" className="bg-blue-500/20 text-blue-200 border-blue-500/30 px-4 py-2 text-sm">
                 <Rocket className="w-4 h-4 mr-2" />
                 AI-Powered
