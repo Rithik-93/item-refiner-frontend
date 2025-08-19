@@ -14,7 +14,10 @@ function App() {
   const [status, setStatus] = useState<ProcessingStatus | null>(null)
   const [downloadUrl, setDownloadUrl] = useState('')
 
-  const API_BASE = 'http://localhost:3001/api'
+  const API_BASE = import.meta.env.VITE_API_BASE
+  if (!API_BASE) {
+    throw new Error('VITE_API_BASE is not set')
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
