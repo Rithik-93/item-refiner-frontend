@@ -84,7 +84,7 @@ function App() {
               <Sparkles className="w-12 h-12 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent mb-6 leading-tight">
-              Duplicate Item Refiner
+              Mohammad Aneees🤘🏻👍🏻
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
               Enter your Zoho Books organization ID to find and analyze duplicate items with AI-powered precision
@@ -103,12 +103,6 @@ function App() {
 
           {/* Main Form Card */}
           <Card className="backdrop-blur-xl bg-white/5 border-white/10 shadow-2xl border-0">
-            <CardHeader className="text-center pb-8">
-              <CardTitle className="text-3xl text-white font-bold">Organization Analysis</CardTitle>
-              <CardDescription className="text-slate-400 text-lg">
-                Get started by entering your organization details
-              </CardDescription>
-            </CardHeader>
             <CardContent className="space-y-8 px-8 pb-8">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-3">
