@@ -104,7 +104,7 @@ function App() {
                 <div className="space-y-3">
                   <Label htmlFor="orgId" className="text-base font-semibold text-slate-300 flex items-center gap-2">
                     <Shield className="w-4 h-4" />
-                    Organization ID
+                    Enter Organization ID found in Zoho Books
                   </Label>
                   <div className="relative group">
                     <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-purple-400 transition-colors duration-200" />
@@ -113,16 +113,12 @@ function App() {
                       type="text"
                       value={organizationId}
                       onChange={(e) => setOrganizationId(e.target.value)}
-                      placeholder="e.g., 867850976"
+                      placeholder="e.g., 123123 But enter the actual organization id please"
                       disabled={isProcessing}
                       required
                       className="pl-12 h-14 bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-purple-500 focus:ring-purple-500/20 transition-all duration-300 text-lg rounded-xl"
                     />
                   </div>
-                  <p className="text-sm text-slate-500 flex items-center gap-2">
-                    <span className="w-2 h-2 bg-slate-500 rounded-full"></span>
-                    Found in your Zoho Books account settings
-                  </p>
                 </div>
                 
                 <Button 
