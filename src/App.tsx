@@ -90,10 +90,6 @@ function App() {
               Enter your Zoho Books organization ID to find and analyze duplicate items with AI-powered precision
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
-              <Badge variant="secondary" className="bg-purple-500/20 text-purple-200 border-purple-500/30 px-4 py-2 text-sm">
-                <Zap className="w-4 h-4 mr-2" />
-                Powered by Anish Kulkarni
-              </Badge>
               <Badge variant="secondary" className="bg-blue-500/20 text-blue-200 border-blue-500/30 px-4 py-2 text-sm">
                 <Rocket className="w-4 h-4 mr-2" />
                 AI-Powered
