@@ -84,7 +84,7 @@ function App() {
               <Sparkles className="w-12 h-12 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent mb-6 leading-tight">
-              Mohammad Aneees🤘🏻👍🏻
+              Duplicate Item Refiner
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
               Enter your Zoho Books organization ID to find and analyze duplicate items with AI-powered precision
