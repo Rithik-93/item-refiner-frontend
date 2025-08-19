@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
@@ -121,23 +121,25 @@ function App() {
                   </div>
                 </div>
                 
-                <Button 
-                  type="submit" 
-                  disabled={isProcessing} 
-                  className="w-full h-14 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 text-white font-bold text-lg shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl"
-                >
-                  {isProcessing ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-3 animate-spin" />
+                <div className="flex justify-center">
+                  <Button 
+                    type="submit" 
+                    disabled={isProcessing} 
+                    className="h-12 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 text-white font-semibold text-base shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border border-purple-500/50 hover:border-purple-400 px-8"
+                  >
+                    {isProcessing ? (
+                      <>
+                      <Loader2 className="w-5 h-5 mr-1 animate-spin" />
                       Processing...
                     </>
                   ) : (
                     <>
-                      <Search className="w-5 h-5 mr-3" />
+                      <Search className="w-5 h-5 mr-1" />
                       Analyze Duplicates
                     </>
                   )}
                 </Button>
+                </div>
               </form>
             </CardContent>
           </Card>
@@ -168,7 +170,7 @@ function App() {
                   )}
                   
                   <div>
-                    <h3 className={`font-bold text-xl ${
+                    <h3 className={`font-semibold text-xl ${
                       status.status === 'processing' ? 'text-blue-300' :
                       status.status === 'completed' ? 'text-green-300' :
                       'text-red-300'
@@ -190,13 +192,13 @@ function App() {
                 )}
                 
                 {status.status === 'completed' && downloadUrl && (
-                  <div className="mt-8 p-6 bg-green-500/10 border border-green-500/20 rounded-xl">
+                  <div className="mt-8 p-6 bg-green-500/10 border border-green-500/20 rounded-xl flex flex-col items-center">
                     <p className="text-green-300 text-center mb-6 text-lg font-semibold">
                       🎉 Your duplicate analysis is ready for download!
                     </p>
                     <Button 
                       onClick={handleDownload} 
-                      className="w-full h-14 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold text-lg shadow-2xl hover:shadow-green-500/25 transition-all duration-300 rounded-xl"
+                      className="h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold text-base shadow-lg hover:shadow-green-500/25 transition-all duration-300 rounded-lg border border-green-500/50 hover:border-green-400 px-8"
                     >
                       <Download className="w-5 h-5 mr-3" />
                       Download Excel Report
