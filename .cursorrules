@@ -1,0 +1,55 @@
+# Cursor Rules for PowerShell Environment
+
+## Command Format Rules
+- Always provide commands in PowerShell format
+- Use semicolons (;) instead of && for command chaining
+- Use PowerShell-specific syntax and cmdlets when applicable
+- Avoid bash/Linux-specific commands
+
+## Examples of Correct PowerShell Commands:
+```powershell
+# Multiple commands
+cd item-refiner; npm run dev
+
+# Environment variables
+$env:NODE_ENV = "development"
+
+# File operations
+Get-Content package.json
+Set-Content -Path .env -Value "REACT_APP_API_URL=http://localhost:3001"
+
+# Directory operations
+New-Item -ItemType Directory -Path "dist"
+Remove-Item -Path "node_modules" -Recurse -Force
+
+# Package management
+npm install; npm run build
+```
+
+## React/Frontend Specific Commands:
+- Start dev server: `npm run dev` or `npm start`
+- Build for production: `npm run build`
+- Install dependencies: `npm install`
+- Add packages: `npm install package-name`
+- Remove packages: `npm uninstall package-name`
+
+## Avoid These (Unix/Bash style):
+```bash
+# Don't use these formats:
+cd item-refiner && npm run dev      # Use semicolon instead
+export REACT_APP_API=value         # Use $env: instead
+cat package.json                   # Use Get-Content instead
+rm -rf node_modules                # Use Remove-Item instead
+```
+
+## Terminal Command Guidelines:
+1. Always assume PowerShell as the default shell
+2. Use PowerShell cmdlets when available
+3. Format multi-command operations with semicolons
+4. Provide PowerShell-compatible file paths
+5. Use PowerShell variable syntax ($env:, $var)
+
+## Project Structure:
+- Frontend: item-refiner/ (React + Vite)
+- Backend: item-refinement/ (Express + TypeScript)
+- Commands should be run from appropriate directory
