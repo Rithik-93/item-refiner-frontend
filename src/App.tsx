@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { Search, Download, AlertCircle, CheckCircle2, Loader2, Sparkles, Zap, Shield, Rocket } from 'lucide-react'
+import { Search, Download, AlertCircle, CheckCircle2, Loader2, Sparkles, Zap, Shield, Rocket, Package, Users } from 'lucide-react'
 
 interface ProcessingStatus {
   status: 'processing' | 'completed' | 'error';
@@ -13,13 +13,18 @@ interface ProcessingStatus {
   filename?: string;
 }
 
+type RefinementMode = 'item' | 'vendor';
+
 function App() {
   const [organizationId, setOrganizationId] = useState('')
   const [isProcessing, setIsProcessing] = useState(false)
   const [status, setStatus] = useState<ProcessingStatus | null>(null)
   const [downloadUrl, setDownloadUrl] = useState('')
+  const [refinementMode, setRefinementMode] = useState<RefinementMode>('item')
 
   const API_BASE = import.meta.env.VITE_API_BASE
+  const VENDOR_API_BASE = import.meta.env.VITE_VENDOR_API_BASE || API_BASE
+  
   if (!API_BASE) {
     throw new Error('VITE_API_BASE is not set')
   }
@@ -33,11 +38,14 @@ function App() {
     }
 
     setIsProcessing(true)
-    setStatus({ status: 'processing', progress: 'Analyzing duplicates...' })
+    setStatus({ status: 'processing', progress: `Analyzing ${refinementMode} duplicates...` })
     setDownloadUrl('')
 
     try {
-      const response = await fetch(`${API_BASE}/detect-duplicates`, {
+      const baseUrl = refinementMode === 'vendor' ? VENDOR_API_BASE : API_BASE
+      const endpoint = refinementMode === 'vendor' ? '/vendor/find-duplicates' : '/detect-duplicates'
+      
+      const response = await fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +57,8 @@ function App() {
 
       if (response.ok) {
         setStatus({ status: 'completed', progress: 'Analysis complete!' })
-        setDownloadUrl(`${API_BASE}/download/${data.filename}`)
+        const downloadEndpoint = refinementMode === 'vendor' ? '/vendor/download' : '/download'
+        setDownloadUrl(`${baseUrl}${downloadEndpoint}/${data.filename}`)
       } else {
         throw new Error(data.error || 'Failed to start processing')
       }
@@ -84,10 +93,10 @@ function App() {
               <Sparkles className="w-12 h-12 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent mb-1 leading-tight">
-              Numerize Duplicate Item Refiner
+              Numerize Duplicate Refiner
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Enter your Zoho Books organization ID to find and analyze duplicate items with AI-powered precision
+              Enter your Zoho Books organization ID to find and analyze duplicate {refinementMode === 'item' ? 'items' : 'vendors'} with AI-powered precision
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
               <Badge variant="secondary" className="bg-blue-500/20 text-blue-200 border-blue-500/30 px-4 py-2 text-sm">
@@ -96,6 +105,43 @@ function App() {
               </Badge>
             </div>
           </div>
+
+          {/* Mode Selection */}
+          <Card className="backdrop-blur-xl bg-white/5 border-white/10 shadow-2xl border-0 mb-8">
+            <CardContent className="px-8 py-6">
+              <div className="flex items-center justify-center space-x-4">
+                <Label className="text-base font-semibold text-slate-300">Refinement Mode:</Label>
+                <div className="flex space-x-2">
+                  <Button
+                    type="button"
+                    variant={refinementMode === 'item' ? 'default' : 'outline'}
+                    onClick={() => setRefinementMode('item')}
+                    className={`flex items-center gap-2 px-6 py-3 ${
+                      refinementMode === 'item' 
+                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white border-purple-500' 
+                        : 'bg-slate-800/50 text-slate-300 border-slate-600 hover:bg-slate-700/50'
+                    }`}
+                  >
+                    <Package className="w-4 h-4" />
+                    Items
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={refinementMode === 'vendor' ? 'default' : 'outline'}
+                    onClick={() => setRefinementMode('vendor')}
+                    className={`flex items-center gap-2 px-6 py-3 ${
+                      refinementMode === 'vendor' 
+                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white border-purple-500' 
+                        : 'bg-slate-800/50 text-slate-300 border-slate-600 hover:bg-slate-700/50'
+                    }`}
+                  >
+                    <Users className="w-4 h-4" />
+                    Vendors
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Main Form Card */}
           <Card className="backdrop-blur-xl bg-white/5 border-white/10 shadow-2xl border-0">
@@ -135,7 +181,7 @@ function App() {
                   ) : (
                     <>
                       <Search className="w-5 h-5 mr-1" />
-                      Analyze Duplicates
+                      Analyze {refinementMode === 'item' ? 'Item' : 'Vendor'} Duplicates
                     </>
                   )}
                 </Button>
@@ -194,14 +240,14 @@ function App() {
                 {status.status === 'completed' && downloadUrl && (
                   <div className="mt-8 p-6 bg-green-500/10 border border-green-500/20 rounded-xl flex flex-col items-center">
                     <p className="text-green-300 text-center mb-6 text-lg font-semibold">
-                      🎉 Your duplicate analysis is ready for download!
+                      🎉 Your {refinementMode === 'item' ? 'item' : 'vendor'} duplicate analysis is ready for download!
                     </p>
                     <Button 
                       onClick={handleDownload} 
                       className="h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold text-base shadow-lg hover:shadow-green-500/25 transition-all duration-300 rounded-lg border border-green-500/50 hover:border-green-400 px-8"
                     >
                       <Download className="w-5 h-5 mr-3" />
-                      Download Excel Report
+                      Download {refinementMode === 'item' ? 'Item' : 'Vendor'} Excel Report
                     </Button>
                   </div>
                 )}
@@ -224,7 +270,7 @@ function App() {
               <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
               <span className="flex items-center gap-2">
                 <Rocket className="w-4 h-4" />
-                AI-Powered Analysis
+                AI-Powered {refinementMode === 'item' ? 'Item' : 'Vendor'} Analysis
               </span>
             </div>
           </div>

@@ -1,9 +1,10 @@
-# Duplicate Item Refiner Frontend
+# Duplicate Refiner Frontend
 
-A sleek, modern React application with a beautiful dark theme for analyzing duplicate items in Zoho Books.
+A sleek, modern React application with a beautiful dark theme for analyzing duplicate items and vendors in Zoho Books.
 
 ## ✨ Features
 
+- **Dual Mode Support**: Analyze both duplicate items and vendors in Zoho Books
 - **Sleek Dark Theme**: Rich, sophisticated dark color scheme with purple, blue, and cyan accents
 - **Modern UI**: Built with shadcn/ui components and Tailwind CSS
 - **Responsive Design**: Optimized for all device sizes
@@ -92,6 +93,18 @@ The application uses a sophisticated dark theme with:
 - **Accessibility**: High contrast and readable typography
 
 ## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# API Base URLs
+VITE_API_BASE=http://localhost:3000/api
+VITE_VENDOR_API_BASE=http://localhost:3001
+
+# Note: If VITE_VENDOR_API_BASE is not set, it will default to VITE_API_BASE
+```
 
 ### Tailwind CSS
 
