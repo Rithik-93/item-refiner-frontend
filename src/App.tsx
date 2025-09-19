@@ -22,11 +22,11 @@ function App() {
   const [downloadUrl, setDownloadUrl] = useState('')
   const [refinementMode, setRefinementMode] = useState<RefinementMode>('item')
 
-  const API_BASE = import.meta.env.VITE_API_BASE
-  const VENDOR_API_BASE = import.meta.env.VITE_VENDOR_API_BASE || API_BASE
-  
-  if (!API_BASE) {
-    throw new Error('VITE_API_BASE is not set')
+  const VITE_API_BASE_ITEM = import.meta.env.VITE_API_BASE_ITEM
+  const VITE_API_BASE_VENDOR = import.meta.env.VITE_API_BASE_VENDOR
+
+  if (!VITE_API_BASE_ITEM || !VITE_API_BASE_VENDOR) {
+    throw new Error('VITE_API_BASE_ITEM or VITE_API_BASE_VENDOR is not set')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,7 +42,7 @@ function App() {
     setDownloadUrl('')
 
     try {
-      const baseUrl = refinementMode === 'vendor' ? VENDOR_API_BASE : API_BASE
+      const baseUrl = refinementMode === 'vendor' ? VITE_API_BASE_VENDOR : VITE_API_BASE_ITEM
       const endpoint = refinementMode === 'vendor' ? '/vendor/find-duplicates' : '/detect-duplicates'
       
       const response = await fetch(`${baseUrl}${endpoint}`, {
